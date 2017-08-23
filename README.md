@@ -114,7 +114,6 @@ return {
 
 **Redux does not allows us to return an `undefined` value. Always set as `null`**
 
-
 ### Containers (Smart Component)
 A container is a react component that it´s connected to Redux. The care about a particular piece of state.
 Only the parent should be connected to redux
@@ -151,3 +150,9 @@ function mapDispatchToProps(dispatch) {
 Whenever we call sth in our container, we will dispach an action 
 
 So, `doSth` will be available as a `props`
+
+**Every time you create a new component, you should decide previously if it´s a `component` or a `container`**
+
+
+### Controlled field
+Is a form element where the value of the input is set by the state of our component
