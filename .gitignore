@@ -1,2 +1,5 @@
 .idea/
 react-youtube/node_modules/
+react-library/node_modules/
+react-weather/node_modules/
+react-blog/node_modules/

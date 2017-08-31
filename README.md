@@ -14,7 +14,7 @@ $ npm init && touch webpack.config.js && touch .babelrc
 $ mkdir sass && mkdir src && cd src && touch index.js && mkdir components && mkdir reducers && cd reducers && touch index.js && cd ..
 ```
 
-  jsx javascript code that produces html. Make our components mor legible.
+  JSX javascript code that produces html. Make our components more legible.
   React is made up by a different components. It´s a function that returns an HTML
   Controlled components
   Functional component to Class component
@@ -23,17 +23,14 @@ $ mkdir sass && mkdir src && cd src && touch index.js && mkdir components && mkd
 
 #### Functional component
 ``` javascript
-const SearchBar = () => {
+const MyComponent = () => {
   return <input />;
 }
 ```
 
 #### Class component
 ``` javascript
-export class SearchBar extends Component {
-  constructor(props) {
-    super(props);
-  }
+export default class MyComponent extends Component {
   render() {
     return(
       <div></div>
@@ -42,11 +39,14 @@ export class SearchBar extends Component {
 }
 ```
 
+#### Controlled Component
+
 ``` javascript
 <input
   value={ this.state.term }
   onChange={ evt => this.setState({ term: evt.target.value }) } />
 ```
+
 *All components returns an HTML*
 
 ## React and Redux
@@ -89,7 +89,7 @@ Any action return a plain javascript `Object`. It´s always returning:
 
 
 ### Reducers
-A reducer it´s a function that returns a piece of the application state.
+A reducer it´s a function that **returns or produce** a piece of the application state.
 
 Many pieces of state, so many reducers!
 
@@ -156,3 +156,77 @@ So, `doSth` will be available as a `props`
 
 ### Controlled field
 Is a form element where the value of the input is set by the state of our component
+
+## React router
+
+The `router` is listening every time if the location has change (`history`), if it´s true, then call to `react` and ask for render a particular component
+
+### BrowserRouter
+Interacts everytime with the `history` library based on a change and decide what to do
+
+### Route
+Provides the customization or configuration if the url changes (`react-router`). _I wanna show this component or another_ depends on the new `route`
+    
+```javascript 1.6
+<Router path="/" component={} />
+```
+
+### Lifecycle methods
+Functions that are calling automatically by `react`
+
+`componentDidMount()` Automatically call by react after this component has shown upside the DOM
+`componentWillMount()` Automatically call by react before this component has shown upside the DOM
+
+### Switch
+
+Most specific routes at the top of the list
+
+```javascript 1.6
+<Switch>
+  <Router path="/post/new" component={} />
+  <Router path="/" component={} />
+</Switch>
+```
+
+### Link
+It´s something that the user can clock and navigate around different pages into react app
+
+```javascript 1.6
+<Link to="/">Button!</Link>
+```
+
+## Redux Form
+
+Redux form allow us to work with forms in any react application.
+
+Any redux-form is her own reducer which is combined in the index reducers. All forms are connected through.
+
+```javascript 1.6
+export default reduxForm({
+  form: "unique-id"
+})(MyForm);
+```
+
+It´s equal to `connect`. The ability to communicate to the form-reducer
+
+`handleSubmit` It´s a functions that comes from redux-form for making a previous validation
+
+### Field`
+A field only interacts with Redux Form
+
+```javascript 1.6
+<Field
+  name="",
+  component={}
+/>
+```
+`name` What piece of state
+`component` It´s a functions that returns a component  
+
+### Form
+
+There are 3 states:
+
+`pristine`: When no input has been touched or selected. This is the first state
+`touch`: When the user has been touched or selected any input. Does some work on the field.
+`invalid`: When there is an error

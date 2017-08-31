@@ -1,0 +1,23 @@
+import _ from "lodash";
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from "../actions/index";
+
+export default function (state = {}, action) {
+
+  switch(action.type) {
+    case FETCH_POSTS:
+      return _.mapKeys(action.payload.data, "id");
+      break;
+    case DELETE_POST:
+      console.log(action.payload);
+      console.log(state);
+      const s = _.omit(state, action.payload);
+      console.log(s);
+      return s;
+      break;
+    case FETCH_POST:
+      return { ...state, [action.payload.data.id]:action.payload.data };
+      break;
+    default:
+      return state;
+  }
+}
